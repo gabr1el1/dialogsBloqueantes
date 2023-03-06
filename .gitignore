@@ -1,0 +1,6 @@
+*
+!.gitignore
+!uData.*
+!uMain.*
+!DialogosForms.dpr
+!DialogosForms.dproj

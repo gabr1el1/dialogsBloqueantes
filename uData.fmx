@@ -1,0 +1,46 @@
+object frmData: TfrmData
+  Left = 0
+  Top = 0
+  ActiveControl = edtData
+  Caption = 'Form1'
+  ClientHeight = 480
+  ClientWidth = 640
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  OnActivate = FormActivate
+  OnCreate = FormCreate
+  OnCloseQuery = FormCloseQuery
+  DesignerMasterStyle = 0
+  object edtData: TEdit
+    Touch.InteractiveGestures = [LongTap, DoubleTap]
+    Align = Top
+    TabOrder = 0
+    Size.Width = 640.000000000000000000
+    Size.Height = 22.000000000000000000
+    Size.PlatformDefault = False
+    OnKeyUp = edtDataKeyUp
+  end
+  object btnBack: TButton
+    Align = Top
+    Position.Y = 22.000000000000000000
+    Size.Width = 640.000000000000000000
+    Size.Height = 65.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 1
+    Text = 'Regresar'
+    OnClick = btnBackClick
+  end
+  object memLog: TMemo
+    Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
+    DataDetectorTypes = []
+    ReadOnly = True
+    Align = Client
+    Size.Width = 640.000000000000000000
+    Size.Height = 393.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 2
+    Viewport.Width = 636.000000000000000000
+    Viewport.Height = 389.000000000000000000
+  end
+end
