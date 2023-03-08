@@ -58,7 +58,6 @@ procedure TfrmData.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
 begin
   if(modificado) then
   begin
-  CloseOk:=False;
    TDialogService.MessageDialog('¿Desea guardar los cambios?' // mensaje del dialogo
       , TMsgDlgType.mtConfirmation // tipo de dialogo
       , [TMsgDlgBtn.mbYes, TMsgDlgBtn.mbNo, TMsgDlgBtn.mbCancel] // botones
@@ -67,51 +66,43 @@ begin
       ,  procedure(const AResult: TModalResult)
         begin
           case AResult of
-            mrYES :
-            begin
-              memLog.Lines.SaveToFile(ruta);
-              CloseOk:=True;
-              Close;
-              //ShowMessage('aqui');
-            end;
-            mrNo:
-            begin
-              CloseOk:=True;
-              memLog.Lines.Clear;
-              Close;
-            end;
+            mrYes: memLog.Lines.SaveToFile(ruta);
+            mrNo: memLog.Lines.Clear;
           end; // case
+        if AResult<> mrCancel then
+        begin
+          CloseOk:=true;
+          Close;
+        end;
+        
       end); // fn
   end
-  else
-  begin
-    CloseOk:=true;
-  end;
+  else CloseOk:=true;
   CanClose:=CloseOk;
-
 end;
 procedure TfrmData.FormCreate(Sender: TObject);
 begin
 {$IFDEF MSWINDOWS}
-  ruta:= TPath.Combine('.\','data.txt');
+ruta:= TPath.Combine('.\','data.txt');
 {$ENDIF}
 {$IFDEF ANDROID}
-  ruta:=TPath.Combine(TPath.GetTempPath,'data.txt');
+ruta:=TPath.Combine(TPath.GetTempPath,'data.txt');
 {$ENDIF}
 {$IFDEF IOS}
 // IOS specific code here
-  ruta:=TPath.Combine(TPath.GetTempPath,'data.txt');
+ruta:=TPath.Combine(TPath.GetTempPath,'data.txt');
 {$ENDIF}
 {$IFDEF MACOS}
 // OS X specific code here
-  ruta:= TPath.Combine('.\','data.txt');
+ruta:= TPath.Combine('.\','data.txt');
 {$ENDIF}
 end;
 
 procedure TfrmData.FormShow(Sender: TObject);
 begin
-modificado:=false;
-if(FileExists(ruta))then
+  modificado:=false;
+  CloseOk:=false;
+  if(FileExists(ruta))then
   memLog.Lines.LoadFromFile(ruta);
 end;
 

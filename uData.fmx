@@ -8,9 +8,9 @@ object frmData: TfrmData
   FormFactor.Width = 320
   FormFactor.Height = 480
   FormFactor.Devices = [Desktop]
-  OnActivate = FormActivate
   OnCreate = FormCreate
   OnCloseQuery = FormCloseQuery
+  OnShow = FormShow
   DesignerMasterStyle = 0
   object edtData: TEdit
     Touch.InteractiveGestures = [LongTap, DoubleTap]
