@@ -71,6 +71,7 @@ begin
           end; // case
         if AResult<> mrCancel then
         begin
+          modificado:=false;
           CloseOk:=true;
           Close;
         end;
